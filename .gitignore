@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (only if tools get added later)
+node_modules/
+
+# Big raw downloads stay on your laptop, never in git.
+# The ABO dataset archives alone are several GB.
+data/raw/
+*.tar
+*.tar.gz
+
+# Original full-size evaluation photos (commit small resized copies instead)
+eval/photos-original/

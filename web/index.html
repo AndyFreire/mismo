@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Mismo: on-device visual product search. Point your camera at an everyday product and find similar products. Runs entirely on your device." />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Mismo · Device check</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232563eb'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='white' stroke-width='6'/%3E%3Ccircle cx='32' cy='32' r='4' fill='white'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <h1 id="app-name">Mismo</h1>
+      <p class="subtitle">Step 1: device check. Proves Google's on-device vision engine runs on this phone.</p>
+    </header>
+
+    <main>
+      <!-- 1. Engine -->
+      <section class="card" aria-labelledby="engine-title">
+        <h2 id="engine-title">1. On-device engine</h2>
+        <div class="row">
+          <label class="field">
+            <span>Model</span>
+            <select id="model-select">
+              <option value="small" selected>MobileNet-V3 small</option>
+              <option value="large">MobileNet-V3 large</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Runs on</span>
+            <select id="delegate-select">
+              <option value="CPU" selected>CPU (recommended)</option>
+              <option value="GPU">GPU</option>
+            </select>
+          </label>
+        </div>
+        <p id="engine-status" class="status" role="status">Starting…</p>
+        <dl id="engine-stats" class="stats"></dl>
+      </section>
+
+      <!-- 2. Photos -->
+      <section class="card" aria-labelledby="photo-title">
+        <h2 id="photo-title">2. Try a photo</h2>
+        <p class="hint">
+          Quick quality test: take two photos of the same object from different angles, then one of
+          something different. Same object should score clearly higher.
+        </p>
+        <div class="row">
+          <label class="btn primary">
+            <input id="camera-input" class="visually-hidden" type="file" accept="image/*" capture="environment" />
+            Take photo
+          </label>
+          <label class="btn">
+            <input id="upload-input" class="visually-hidden" type="file" accept="image/*" />
+            Choose photo
+          </label>
+          <button id="clear-photos" class="btn subtle" type="button">Clear</button>
+        </div>
+        <p id="photo-status" class="status" role="status"></p>
+        <ol id="photo-list" class="photo-list"></ol>
+      </section>
+
+      <!-- 3. Live camera -->
+      <section class="card" aria-labelledby="live-title">
+        <h2 id="live-title">3. Live camera (optional)</h2>
+        <p class="hint">Tests the in-page viewfinder, which is where iPhone Safari is pickiest.</p>
+        <div class="row">
+          <button id="live-start" class="btn" type="button">Start camera</button>
+          <button id="live-capture" class="btn primary" type="button" disabled>Embed this frame</button>
+          <button id="live-stop" class="btn subtle" type="button" disabled>Stop</button>
+        </div>
+        <video id="live-video" class="live-video" playsinline muted autoplay hidden></video>
+        <p id="live-status" class="status" role="status"></p>
+      </section>
+
+      <!-- 4. Speech -->
+      <section class="card" aria-labelledby="speech-title">
+        <h2 id="speech-title">4. Spoken answer (for Glasses Mode)</h2>
+        <div class="row">
+          <button id="speak-btn" class="btn" type="button">Speak a test sentence</button>
+        </div>
+        <p id="speech-status" class="status" role="status"></p>
+      </section>
+
+      <!-- 5. Capabilities -->
+      <section class="card" aria-labelledby="caps-title">
+        <h2 id="caps-title">5. What this device supports</h2>
+        <table class="caps">
+          <tbody id="caps-body"></tbody>
+        </table>
+      </section>
+
+      <!-- Report -->
+      <section class="card" aria-labelledby="report-title">
+        <h2 id="report-title">Report</h2>
+        <p class="hint">Copies every number on this page as JSON. Paste it into your notes for the benchmark.</p>
+        <div class="row">
+          <button id="copy-report" class="btn" type="button">Copy report</button>
+        </div>
+        <p id="report-status" class="status" role="status"></p>
+        <textarea id="report-text" class="report-text" rows="8" readonly hidden></textarea>
+      </section>
+
+      <!-- Log -->
+      <section class="card" aria-labelledby="log-title">
+        <h2 id="log-title">Log</h2>
+        <pre id="log" class="log" aria-live="polite"></pre>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        <strong>Privacy:</strong> photos are processed in your browser and are never uploaded. The MediaPipe library
+        sends anonymous performance metrics (no images) to Google, as described in its
+        <a href="https://www.npmjs.com/package/@mediapipe/tasks-vision" rel="noopener">privacy notice</a>.
+      </p>
+      <p>
+        Built with <a href="https://ai.google.dev/edge/mediapipe" rel="noopener">MediaPipe</a> (Apache 2.0).
+      </p>
+    </footer>
+
+    <script type="module" src="js/probe.js"></script>
+  </body>
+</html>
