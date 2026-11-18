@@ -6,7 +6,7 @@ Point your phone at an everyday product and see the closest matching products fr
 
 Built entirely on Google's on-device AI stack (MediaPipe) and runs in the browser on phone or desktop.
 
-**Live demo:** https://YOUR-GITHUB-USERNAME.github.io/mismo/ (step 1 device check)
+**Live demo:** https://andyfreire.github.io/mismo/ (step 1 device check)
 
 > Status: Weekend 1, step 1. The live page is a device check that proves the MediaPipe Image Embedder runs on a phone and records load time, speed and device support. The product case study below will be filled in as the build progresses.
 
